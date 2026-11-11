@@ -29,13 +29,35 @@ The system is designed around two primary user roles:
 
 > **Project status:** Active development. Some integrations and flows may still require configuration or testing before production use.
 
-## 📱 Preview
+## 📱 App Screenshots
 
-<!-- Add your real screenshots to docs/screenshots/ and replace these placeholders. -->
+### 🏠 Landlord Experience
 
-| Explore rooms | Room details | Messages |
+Manage properties, tenants, appointments, and conversations in one place.
+
+| Home | Room Management | Tenant Management |
 |:---:|:---:|:---:|
-| *Screenshot coming soon* | *Screenshot coming soon* | *Screenshot coming soon* |
+| <img src="screenshots/landlord/trang chủ.jpg" width="220"> | <img src="screenshots/landlord/danh sách phòng.jpg" width="220"> | <img src="screenshots/landlord/danh sách khách thuê.jpg" width="220"> |
+
+| Appointments | Messages | Notifications |
+|:---:|:---:|:---:|
+| <img src="screenshots/landlord/lịch hẹn.jpg" width="220"> | <img src="screenshots/landlord/tin nhắn.jpg" width="220"> | <img src="screenshots/landlord/thông báo.jpg" width="220"> |
+
+| Edit Profile |
+|:---:|
+| <img src="screenshots/landlord/chỉnh sửa hồ sơ.jpg" width="220"> |
+
+### 🔎 Tenant Experience
+
+Discover rental rooms, explore details, and manage your rental journey.
+
+| Home | Search Rooms | Room Details |
+|:---:|:---:|:---:|
+| <img src="screenshots/tenant/trang chủ.jpg" width="220"> | <img src="screenshots/tenant/tìm kiếm phòng.jpg" width="220"> | <img src="screenshots/tenant/trang chi tiết phòng.jpg" width="220"> |
+
+| My Rentals | Appointments |
+|:---:|:---:|
+| <img src="screenshots/tenant/danh sách phòng đang thuê.jpg" width="220"> | <img src="screenshots/tenant/lịch hẹn.jpg" width="220"> |
 
 ## 🚀 Features
 
