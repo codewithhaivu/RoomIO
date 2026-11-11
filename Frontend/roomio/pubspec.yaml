@@ -1,0 +1,62 @@
+name: roomio
+description: "A new Flutter project."
+
+publish_to: 'none'
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.11.5
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  cupertino_icons: ^1.0.8
+  flutter_bloc: ^9.1.1
+  equatable: ^2.1.0
+  dartz: ^0.10.1
+  get_it: ^9.2.1
+  retrofit: ^4.10.0
+  dio: ^5.11.1
+  flex_color_scheme: ^8.4.0
+  flutter_secure_storage: ^11.2.0
+  image_picker: ^1.2.4
+  geolocator: ^14.1.1
+  geocoding: ^5.0.0
+  qr_flutter: ^4.1.0
+  mobile_scanner: ^7.4.2
+  web_socket_channel: ^3.0.3
+  firebase_core: ^5.1.0
+  firebase_messaging: ^17.0.1
+  flutter_local_notifications: ^22.3.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^6.0.0
+  build_runner: ^2.15.1
+  retrofit_generator:  ^10.2.9
+
+
+flutter:
+
+
+  uses-material-design: true
+
+  fonts:
+  - family: Be Vietnam Pro
+    fonts:
+      - asset: assets/fonts/BeVietnamPro-Regular.ttf
+      - asset: assets/fonts/BeVietnamPro-Medium.ttf
+        weight: 500
+      - asset: assets/fonts/BeVietnamPro-SemiBold.ttf
+        weight: 600
+      - asset: assets/fonts/BeVietnamPro-Bold.ttf
+        weight: 700
+      - asset: assets/fonts/BeVietnamPro-ExtraBold.ttf
+        weight: 800

@@ -1,0 +1,35 @@
+# Thư mục thư viện (Nặng nhất - bắt buộc phải chặn)
+node_modules/
+vendor/
+venv/
+.venv/
+env/
+__pycache__/
+secret/
+# Thư mục biên dịch / Build
+dist/
+build/
+out/
+target/
+bin/
+obj/
+
+# File biến môi trường và bảo mật (Tránh lộ key/password)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# File log và bộ nhớ đệm
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+.cache/
+
+# Thư mục cài đặt của IDE và Hệ điều hành
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

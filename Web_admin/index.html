@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#7560cf">
+  <title>Trọ Admin · Quản trị hệ thống</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <script src="js/api.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <div id="sidebar-overlay" class="sidebar-overlay" hidden></div>
+  <aside class="sidebar" id="sidebar" aria-label="Điều hướng chính">
+    <a class="brand" href="#members"><span class="brand-icon" data-icon="building"></span><span>trọ<span class="brand-light">admin</span><small>KHÔNG GIAN QUẢN TRỊ</small></span></a>
+    <div class="workspace"><span class="workspace-icon" data-icon="grid"></span><div>Quản trị hệ thống<small>Không gian làm việc</small></div><span class="workspace-dot"></span></div>
+    <p class="nav-label">QUẢN LÝ</p>
+    <nav class="nav flex-column gap-2">
+      <a class="nav-link active" href="#members" data-view="members"><span data-icon="users"></span>Thành viên<span class="nav-arrow">›</span></a>
+      <a class="nav-link" href="#landlords" data-view="landlords"><span data-icon="shield"></span>Duyệt chủ trọ<span class="nav-arrow">›</span></a>
+      <a class="nav-link" href="#rooms" data-view="rooms"><span data-icon="building"></span>Phòng & bài đăng<span class="nav-arrow">›</span></a>
+    </nav>
+    <div class="sidebar-note"><span data-icon="sparkles"></span><h3>Mỗi thao tác, một trải nghiệm tốt hơn.</h3><p>Quản lý cộng đồng và giữ thông tin phòng trọ luôn đáng tin cậy.</p><div class="note-houses" aria-hidden="true"><i></i><i></i><i></i></div></div>
+    <div class="sidebar-bottom"><a class="nav-link" href="#settings" data-view="settings"><span data-icon="settings"></span>Cài đặt kết nối</a><div class="profile"><span class="avatar admin-avatar">AD</span><div>Quản trị viên<small>Admin workspace</small></div><span data-icon="shield"></span></div></div>
+  </aside>
+  <div class="app-shell">
+    <header class="topbar"><div class="d-flex align-items-center gap-3"><button id="menu-toggle" class="icon-button mobile-menu" aria-label="Mở điều hướng" aria-expanded="false" aria-controls="sidebar"><span data-icon="menu"></span></button><span class="breadcrumb-label">Không gian làm việc <span>/</span> <strong id="breadcrumb-current">Thành viên</strong></span></div><div class="topbar-right"><button class="connection-chip" id="connection-shortcut" title="Mở cài đặt kết nối"><span id="connection-dot" class="status-dot"></span><span id="connection-label">Chưa kết nối</span></button><span class="topbar-divider"></span><span class="avatar avatar-sm">AD</span></div></header>
+    <main id="main-content">
+      <section class="page-heading"><div><div class="eyebrow">ADMIN WORKSPACE</div><h1 id="page-title">Quản lý thành viên<span class="heading-dot">.</span></h1><p id="page-description">Theo dõi tài khoản và quản lý cộng đồng của bạn.</p></div><button class="btn btn-white" id="refresh-button"><span data-icon="refresh"></span>Làm mới dữ liệu</button></section>
+
+      <section id="members-view" class="view" aria-label="Quản lý thành viên">
+        <div class="stats-grid" id="member-stats">
+          <article class="stat-card"><div class="stat-top"><span>Thành viên trên trang</span><span class="stat-icon purple" data-icon="users"></span></div><strong id="stat-members">—</strong><small><span class="tiny-dot purple-bg"></span>Dữ liệu trong trang đang xem</small></article>
+          <article class="stat-card"><div class="stat-top"><span>Chủ trọ trên trang</span><span class="stat-icon blue" data-icon="building"></span></div><strong id="stat-landlords">—</strong><small>Phân loại theo vai trò tài khoản</small></article>
+          <article class="stat-card"><div class="stat-top"><span>Chờ xác minh</span><span class="stat-icon amber" data-icon="clock"></span></div><strong id="stat-pending">—</strong><small>Chủ trọ chưa được xác minh</small></article>
+          <article class="stat-card"><div class="stat-top"><span>Tài khoản đã khóa</span><span class="stat-icon rose" data-icon="lock"></span></div><strong id="stat-locked">—</strong><small>Trạng thái tài khoản: not ok</small></article>
+        </div>
+        <div id="landlord-banner" class="info-banner" hidden><span data-icon="shield"></span><div><strong>Xác minh để chủ trọ bắt đầu hoạt động</strong><p>Xác minh trực tiếp từ chi tiết thành viên hoặc nhập UUID tài khoản chủ trọ.</p></div><button id="open-verify" class="btn btn-primary"><span data-icon="check"></span>Xác minh chủ trọ</button></div>
+        <div class="panel">
+          <div class="panel-heading"><div><h2 id="member-list-title">Danh sách thành viên <span class="count-pill" id="member-count">—</span></h2><p id="member-list-description">Tất cả tài khoản trong trang dữ liệu hiện tại</p></div><span class="subtle-label"><span data-icon="database"></span>Dữ liệu từ hệ thống</span></div>
+          <div class="filter-bar"><label class="search-field"><span data-icon="search"></span><input id="member-search" class="form-control" type="search" placeholder="Tìm tên, số điện thoại hoặc ID…" aria-label="Tìm thành viên trên trang"></label><select id="role-filter" class="form-select" aria-label="Lọc vai trò"><option value="">Tất cả vai trò</option><option value="landlord">Chủ trọ</option><option value="tenant">Người thuê</option><option value="admin">Quản trị viên</option></select><select id="state-filter" class="form-select" aria-label="Lọc trạng thái"><option value="">Tất cả trạng thái</option><option value="ok">Đang hoạt động</option><option value="not ok">Đã khóa</option><option value="pending">Chờ xác minh</option></select><button id="clear-member-filters" class="btn btn-filter" title="Xóa bộ lọc"><span data-icon="filter"></span>Đặt lại</button></div>
+          <div class="table-responsive"><table class="table admin-table align-middle mb-0"><thead><tr><th>THÀNH VIÊN</th><th>SỐ ĐIỆN THOẠI</th><th>VAI TRÒ</th><th>TRẠNG THÁI</th><th>XÁC MINH</th><th class="text-end">THAO TÁC</th></tr></thead><tbody id="members-body"></tbody></table></div>
+          <div id="members-feedback" class="table-feedback" aria-live="polite"></div>
+          <div class="pagination-bar"><div><span id="members-summary">Chưa tải dữ liệu</span><small>Tìm kiếm và bộ lọc áp dụng trong trang hiện tại.</small></div><div class="pagination-controls"><label for="members-limit" class="visually-hidden">Số thành viên mỗi trang</label><select id="members-limit" class="form-select"><option value="10">10 / trang</option><option value="25">25 / trang</option><option value="50">50 / trang</option><option value="100">100 / trang</option></select><button id="members-prev" class="page-button" aria-label="Trang thành viên trước" disabled>‹</button><span class="current-page" id="members-page">1</span><button id="members-next" class="page-button" aria-label="Trang thành viên sau" disabled>›</button></div></div>
+        </div>
+        <p class="page-footnote"><span data-icon="info"></span>Thao tác khóa tài khoản cần xác nhận trước khi thực hiện.</p>
+      </section>
+
+      <section id="rooms-view" class="view" aria-label="Phòng và bài đăng" hidden>
+        <div class="panel lookup-panel"><div class="lookup-icon" data-icon="building"></div><div class="flex-grow-1"><h2>Tra cứu phòng của chủ trọ</h2><p>Nhập ID hồ sơ chủ trọ để xem và kiểm duyệt các bài đăng.</p><form id="room-lookup-form" class="lookup-form"><label class="visually-hidden" for="landlord-id">UUID tài khoản chủ trọ (id_account)</label><input id="landlord-id" class="form-control font-monospace" placeholder="UUID tài khoản chủ trọ (id_account)" required autocomplete="off"><button class="btn btn-primary" id="room-lookup-button" type="submit"><span data-icon="search"></span>Tra cứu phòng</button></form><small class="text-secondary">Sử dụng accountUid, không sử dụng landlordUid.</small></div></div>
+        <div class="panel"><div class="panel-heading"><div><h2>Phòng & bài đăng <span class="count-pill" id="room-count">—</span></h2><p id="room-owner-label">Chọn chủ trọ để bắt đầu tra cứu</p></div><button id="delete-selected" class="btn btn-danger-soft" disabled><span data-icon="trash"></span>Xóa đã chọn <span id="selection-count">(0)</span></button></div><div class="filter-bar"><label class="search-field"><span data-icon="search"></span><input id="room-search" type="search" class="form-control" placeholder="Tìm tên phòng, địa chỉ hoặc ID trên trang…" aria-label="Tìm phòng trên trang"></label><select id="room-status-filter" class="form-select" aria-label="Lọc trạng thái phòng"><option value="">Tất cả trạng thái</option></select></div>
+          <div class="table-responsive"><table class="table admin-table align-middle mb-0"><thead><tr><th class="checkbox-cell"><input id="select-all-rooms" class="form-check-input" type="checkbox" aria-label="Chọn tất cả phòng đang hiển thị" disabled></th><th>PHÒNG / ĐỊA CHỈ</th><th>GIÁ THUÊ / THÁNG</th><th>DIỆN TÍCH</th><th>TRẠNG THÁI</th><th class="text-end">THAO TÁC</th></tr></thead><tbody id="rooms-body"></tbody></table></div><div id="rooms-feedback" class="table-feedback" aria-live="polite"></div><div class="pagination-bar"><div><span id="rooms-summary">Chưa tải dữ liệu</span><small>Chỉ chọn và xóa các phòng trên trang hiện tại.</small></div><div class="pagination-controls"><label class="visually-hidden" for="rooms-limit">Số phòng mỗi trang</label><select id="rooms-limit" class="form-select"><option value="10">10 / trang</option><option value="25">25 / trang</option><option value="50">50 / trang</option><option value="100">100 / trang</option></select><button id="rooms-prev" class="page-button" aria-label="Trang phòng trước" disabled>‹</button><span id="rooms-page" class="current-page">1</span><button id="rooms-next" class="page-button" aria-label="Trang phòng sau" disabled>›</button></div></div></div>
+      </section>
+
+      <section id="settings-view" class="view" aria-label="Cài đặt kết nối" hidden>
+        <div class="settings-grid"><div class="panel settings-panel"><div class="panel-heading"><div><h2>Kết nối API</h2><p>Cấu hình dùng chung cho toàn bộ thao tác quản trị.</p></div><span class="stat-icon purple" data-icon="settings"></span></div><form id="settings-form" class="p-4"><label class="form-label" for="base-url">Base URL</label><input id="base-url" class="form-control" type="url" required placeholder="http://127.0.0.1:8000"><div class="form-text mb-4">Địa chỉ gốc backend, không bao gồm /admin. Có thể bao gồm tiền tố triển khai.</div><label class="form-label" for="access-token">Access token <span class="text-secondary fw-normal">(tùy chọn)</span></label><input id="access-token" class="form-control" type="password" autocomplete="off" placeholder="Dán Bearer token nếu backend yêu cầu"><div class="form-text mb-4">Token chỉ lưu trong phiên tab hiện tại. Base URL được lưu trên trình duyệt.</div><div class="d-flex gap-2 flex-wrap"><button class="btn btn-primary" type="submit"><span data-icon="check"></span>Lưu & kiểm tra kết nối</button><button id="clear-token" class="btn btn-white" type="button">Xóa token</button></div><div id="settings-feedback" class="mt-3" aria-live="polite"></div></form></div><aside class="panel setup-notes"><span class="stat-icon blue" data-icon="info"></span><h2>Trước khi kết nối</h2><p>Chạy giao diện qua HTTP và bật backend FastAPI.</p><ol><li>Đăng ký <code>admin_router</code> trong <code>app/api/router.py</code>.</li><li>Cho phép origin của giao diện qua <code>CORSMiddleware</code>.</li><li>Kiểm tra <code>/admin/members</code> trong Swagger <code>/docs</code>.</li></ol><p>Chi tiết và đoạn cấu hình mẫu có trong <a href="README.md" target="_blank" rel="noopener">README.md <span aria-hidden="true">↗</span></a>.</p></aside></div>
+      </section>
+      <footer class="main-footer"><span>trọadmin <span class="footer-dot">·</span> Không gian quản trị</span><span>Rõ ràng hơn. Quản lý tốt hơn.</span></footer>
+    </main>
+  </div>
+
+  <dialog id="action-dialog" aria-labelledby="dialog-title"><div class="dialog-header"><h2 id="dialog-title"></h2><button id="dialog-close" class="icon-button" aria-label="Đóng hộp thoại"><span data-icon="close"></span></button></div><form id="action-form"><div id="dialog-content" class="dialog-content"></div><div id="dialog-error" class="dialog-error" role="alert" hidden></div><div class="dialog-footer"><button id="dialog-cancel" type="button" class="btn btn-white">Hủy</button><button id="dialog-submit" type="submit" class="btn btn-primary">Xác nhận</button></div></form></dialog>
+  <div id="toast-region" class="toast-region" aria-live="polite" aria-atomic="false"></div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+// const String authAPIBaseUrl = "http://10.0.2.2:8000/auth";
+// const String profileLandlordAPIBaseUrl = "http://10.0.2.2:8000/landlords";
+// const String profileTenantAPIBaseUrl = "http://10.0.2.2:8000/tenants";
+// const String roomAPIBaseUrl = 'http://10.0.2.2:8000/rooms' ;
+// const String appointmentAPIBaseUrl = 'http://10.0.2.2:8000/appointments' ;
+// const String rentalAPIBaseUrl = 'http://10.0.2.2:8000/rentals' ;
+// const String notificationAPIBaseUrl = 'http://10.0.2.2:8000/notifications' ;
+// const String chatAPIBaseUrl = 'http://10.0.2.2:8000/chat' ;
+
+//const String baseUrl = "http://127.0.0.1:8000";
+const String baseUrl = 'https://develop-techrepublic-snapshot-movements.trycloudflare.com';
+const String authAPIBaseUrl = "$baseUrl/auth";
+const String profileLandlordAPIBaseUrl = "$baseUrl/landlords";
+const String profileTenantAPIBaseUrl = "$baseUrl/tenants";
+const String roomAPIBaseUrl = "$baseUrl/rooms";
+const String appointmentAPIBaseUrl = "$baseUrl/appointments";
+const String rentalAPIBaseUrl = "$baseUrl/rentals";
+const String notificationAPIBaseUrl = "$baseUrl/notifications";
+const String chatAPIBaseUrl = "$baseUrl/chat";
+const String reviewAPIBaseUrl = "$baseUrl/reviews";
+const String savedRoomAPIBaseUrl = "$baseUrl/saved-rooms";
+const String deviceAPIBaseUrl = "$baseUrl/devices";
